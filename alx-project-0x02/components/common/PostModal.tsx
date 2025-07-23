@@ -9,7 +9,7 @@ export default function PostModal({ open, onClose, onSubmit }: PostModalProps) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
-  const handleSubmit = () => {
+  const handleFormSubmit = () => {
     if (!title.trim() || !content.trim()) return
     onSubmit({ title, content })
     setTitle('')
@@ -23,22 +23,27 @@ export default function PostModal({ open, onClose, onSubmit }: PostModalProps) {
         <DialogHeader>
           <DialogTitle>Create New Post</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
+
+        <form onSubmit={handleFormSubmit} className="space-y-4">
           <Input
-            placeholder="Title"
+            placeholder="Post Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
           <Textarea
-            placeholder="Content"
+            placeholder="Post Content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            required
           />
           <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={onClose} className='bg-red-600'>Cancel</Button>
-            <Button onClick={handleSubmit} className='bg-green-500'>Submit</Button>
+            <Button type="button" variant="outline" onClick={onClose} className='bg-red-500 text-white border-white hover:scale-110'>
+              Cancel
+            </Button>
+            <Button type="submit" className='bg-green-500 text-white hover:scale-110 border-white'>Submit</Button>
           </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   )

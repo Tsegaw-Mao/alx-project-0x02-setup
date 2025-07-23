@@ -23,7 +23,7 @@ const Home: React.FC = () => {
                 <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
                     <div className="flex flex-col justify-between">
                         <h1 className=" text-2xl font-semibold self-center">Home Page</h1>
-                        <Button onClick={() => setIsModalOpen(true)} className="bg-blue-500 mt-5">Add Post</Button>
+                        <Button onClick={() => setIsModalOpen(true)} className="bg-blue-500 mt-5 hover:scale-110 hover:text-2xl" >Add Post</Button>
                     </div>
                     <PostModal
                         open={isModalOpen}
