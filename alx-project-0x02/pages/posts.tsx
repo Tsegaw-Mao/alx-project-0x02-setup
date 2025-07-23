@@ -6,6 +6,12 @@ import Header from '@/components/layout/Header'
 import PostCard from '@/components/common/PostCard'
 import { PostProps } from '@/interfaces'
 
+
+export interface PostPageProps{
+    posts: PostProps[]
+}
+
+
 export async function getStaticProps() {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10")
     const posts = await response.json()
@@ -18,7 +24,7 @@ export async function getStaticProps() {
 }
 
 
-const Posts: React.FC<PostProps[]> = ({ posts }) => {
+const Posts: React.FC<PostPageProps> = ({ posts }) => {
 
     return (
 
