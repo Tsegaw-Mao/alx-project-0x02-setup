@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { ButtonProps } from '@/interfaces'
+import { type ButtonProps } from '@/interfaces'
 
 const sizeClasses: Record<NonNullable<ButtonProps['size']>, string> = {
   small: 'px-3 py-1 text-sm',
