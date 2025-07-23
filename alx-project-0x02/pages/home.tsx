@@ -2,9 +2,20 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header"
 import { CardProps } from "@/interfaces";
 import Card from "@/components/common/Card";
+import { useState } from 'react'
+import PostModal from "@/components/common/PostModal";
+import { Button } from '@/components/ui/button'
 
 
 const Home: React.FC = () => {
+
+    const [posts, setPosts] = useState<Post[]>([])
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const handleAddPost = (post: Post) => {
+        setPosts((prev) => [...prev, post])
+    }
+
     return (
         <div className="flex flex-col h-screen ">
             <Header />
@@ -12,6 +23,30 @@ const Home: React.FC = () => {
                 <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
                     <div className="flex flex-col justify-between">
                         <h1 className=" text-2xl font-semibold self-center">Home Page</h1>
+                        <Button onClick={() => setIsModalOpen(true)} className="bg-blue-500 mt-5">Add Post</Button>
+                    </div>
+                    <PostModal
+                        open={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                        onSubmit={handleAddPost}
+                    />
+
+                    <div className="space-y-4">
+                        {posts.length === 0 ? (
+                            <p className="text-gray-500">No posts yet.</p>
+                        ) : (
+                            posts.map((post, index) => (
+                                <div
+                                    key={index}
+                                    className="p-4 rounded-lg border border-gray-200 shadow-sm bg-white"
+                                >
+                                    <h2 className="text-lg font-semibold">{post.title}</h2>
+                                    <p className="text-sm text-gray-700 mt-1">{post.content}</p>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                    <div className="flex flex-col justify-between">
                         <div className="grid grid-cols-2 gap-10 mx-30 mt-10">
                             <Card title="What is Lorem Ipsum?" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
                             <Card title="Why do we use it?" content="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." />
@@ -20,9 +55,9 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </main>
-            </div>
+            </div >
             <Footer />
-        </div>
+        </div >
     )
 }
 export default Home;
