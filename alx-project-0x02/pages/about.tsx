@@ -1,5 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header"
+import Button from '@/components/common/Button'
+
 const About: React.FC = () => {
     return (
         <div className="flex flex-col h-screen">
@@ -8,6 +10,17 @@ const About: React.FC = () => {
                 <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
                     <div className="flex justify-between">
                         <h1 className=" text-2xl font-semibold">About Page</h1>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <Button size="small" shape="rounded-sm">
+                            Small Rounded-sm
+                        </Button>
+                        <Button size="medium" shape="rounded-md">
+                            Medium Rounded-md
+                        </Button>
+                        <Button size="large" shape="rounded-full">
+                            Large Rounded-full
+                        </Button>
                     </div>
                 </main>
             </div>

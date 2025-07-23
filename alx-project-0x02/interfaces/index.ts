@@ -1,3 +1,14 @@
+// interfaces/index.ts
+
+import { ButtonHTMLAttributes } from 'react'
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'small' | 'medium' | 'large'
+  shape?: 'rounded-sm' | 'rounded-md' | 'rounded-full'
+  className?: string
+}
+
+
 //define CardProps interface
 export interface CardProps{
     title: string
